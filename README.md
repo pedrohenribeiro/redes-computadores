@@ -1,4 +1,4 @@
-# 🌐 Projeto Redes AWS
+# 🌐 Projeto Redes
 
 Bem-vindo ao repositório do **Projeto de Redes com AWS**!  
 Este projeto tem como objetivo integrar conceitos de redes com serviços da nuvem, utilizando **Docker**, **AWS EC2**, **RDS (MySQL)** e configuração de infraestrutura para aplicações web em nuvem.
