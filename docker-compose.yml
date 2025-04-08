@@ -5,14 +5,34 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "4444:4444"
+      - "3333:3333"
 
-  frontend:
-    container_name: frontend
+  frontend1:
+    container_name: frontend1
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "8080:80"
+    depends_on:
+      - backend
+
+  frontend2:
+    container_name: frontend2
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+
+  frontend3:
+    container_name: frontend3
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8082:80"
     depends_on:
       - backend
