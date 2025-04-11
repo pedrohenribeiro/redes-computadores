@@ -17,22 +17,3 @@ services:
     depends_on:
       - backend
 
-  frontend2:
-    container_name: frontend2
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "8081:80"
-    depends_on:
-      - backend
-
-  frontend3:
-    container_name: frontend3
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "8082:80"
-    depends_on:
-      - backend
