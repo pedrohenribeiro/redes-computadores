@@ -15,7 +15,8 @@ Aqui será apresentado o diagrama da estrutura de redes do projeto, incluindo:
 - Regras de segurança e acesso externo
 
 
-> ![image](https://github.com/user-attachments/assets/879f579d-4b7d-4a63-9109-8df0ce4d2a39)
+
+> ![estrutura](https://github.com/user-attachments/assets/e72f69ab-66f1-4a94-a563-6e949a605e17)
 
 
 
