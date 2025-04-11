@@ -104,7 +104,7 @@ services:
       context: ./redes_computadores/backend
       dockerfile: Dockerfile
     ports:
-      - "3333:3333"
+      - "3332:3332"
 
   frontend:
     container_name: frontend
@@ -175,7 +175,7 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3333
+EXPOSE 3332
 
 CMD ["npx", "ts-node-dev", "src/server.ts"]
 ```
@@ -190,9 +190,9 @@ Execute o seguinte comando para subir os containers:
 docker-compose -f docker-compose.yml up --build -d
 ```
 
-🔓 **Importante**: Vá até o grupo de segurança da VM na AWS e abra a porta `3333` para acesso ao backend.
+🔓 **Importante**: Vá até o grupo de segurança da VM na AWS e abra a porta `3332` para acesso ao backend.
 
-![Porta 3333](https://github.com/user-attachments/assets/887dfbfb-a894-413d-8c89-21666bc41d1e)
+![Porta 3332](https://github.com/user-attachments/assets/887dfbfb-a894-413d-8c89-21666bc41d1e)
 
 ---
 
