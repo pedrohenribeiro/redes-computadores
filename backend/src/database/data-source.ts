@@ -8,7 +8,7 @@ export const AppDataSource = new DataSource({
     host: "srv811.hstgr.io",
     port: 3306,
     username: "u339198693_redes",
-    password: "MetaCode411#",
+    password: "",
     database: "u339198693_redesConputado",
     synchronize: true,
     logging: false,
