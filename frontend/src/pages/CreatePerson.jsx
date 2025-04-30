@@ -32,12 +32,10 @@ function CreatePerson() {
         }
     };
 
-/*     const server = import.meta.env.VITE_SERVER_NAME;
-    console.log("Mostrando: ", server) */
+    const server = import.meta.env.VITE_SERVER_NAME;
+    console.log("Mostrando: ", server)
 
-    console.log("Mostrando:", window.SERVER_NAME);
 
-    
     return (
         <div className="card-container">
             <h2 className="title">{server || "— sem nome —"}</h2>

@@ -1,27 +1,18 @@
-# 1) build estático
 FROM node:22-alpine AS build
 WORKDIR /app
+
+# 1) recebe o arg e exporta apenas o VITE_SERVER_NAME
+ARG SERVER_NAME
+RUN echo ">> Building for ${SERVER_NAME}"
+ENV VITE_SERVER_NAME=$SERVER_NAME
+
 COPY package*.json ./
-RUN npm ci
+RUN npm install
+
 COPY . .
 RUN npm run build
 
-# 2) imagem final
 FROM nginx:alpine
-RUN apk add --no-cache gettext
-
-ARG SERVER_NAME
-ENV SERVER_NAME=$SERVER_NAME
-
-# Copia TODO o dist, incluindo o index.html gerado pelo Vite
 COPY --from=build /app/dist /usr/share/nginx/html
-
-# Renomeia só para servir de template
-RUN mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.template.html
-
-# Copia e libera o entrypoint
-COPY envsubst-entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+EXPOSE 5000
 CMD ["nginx", "-g", "daemon off;"]
