@@ -31,8 +31,8 @@ app.use(express.json());
 app.use(router);
 
 
-app.listen(4444, () => {
-    console.log("Server started on port 4444");
+app.listen(3332, () => {
+    console.log("Server started on port 3332");
     AppDataSource.initialize().then( () => {
         console.log("Database ok");
     })
