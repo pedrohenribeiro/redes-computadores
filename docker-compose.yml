@@ -23,31 +23,31 @@ services:
 
   # As três réplicas do front-end, usando a mesma imagem
   frontend1:
-    image: my-frontend:latest
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     environment:
       - SERVER_NAME=Servidor 1
     ports:
       - "5001:80"
-    depends_on:
-      - backend
 
   frontend2:
-    image: my-frontend:latest
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     environment:
       - SERVER_NAME=Servidor 2
     ports:
       - "5002:80"
-    depends_on:
-      - backend
 
   frontend3:
-    image: my-frontend:latest
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     environment:
       - SERVER_NAME=Servidor 3
     ports:
       - "5003:80"
-    depends_on:
-      - backend
 
   # Load-balancer nginx
   loadbalancer:

@@ -1,4 +1,4 @@
-# 1) Build estático
+# 1) build estático
 FROM node:22-alpine AS build
 WORKDIR /app
 COPY package*.json ./
@@ -6,19 +6,20 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# 2) Imagem final do front-end
+# 2) imagem final
 FROM nginx:alpine
 RUN apk add --no-cache gettext
 
-# variável a ser injetada em runtime
 ARG SERVER_NAME
 ENV SERVER_NAME=$SERVER_NAME
 
-# copia o dist e renomeia o index para template
+# Copia TODO o dist, incluindo o index.html gerado pelo Vite
 COPY --from=build /app/dist /usr/share/nginx/html
+
+# Renomeia só para servir de template
 RUN mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.template.html
 
-# copia e libera o entrypoint dentro do container
+# Copia e libera o entrypoint
 COPY envsubst-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
