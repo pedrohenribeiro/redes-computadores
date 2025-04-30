@@ -32,8 +32,12 @@ function CreatePerson() {
         }
     };
 
+    const server = process.env.REACT_APP_SERVER_NAME;
+
+
     return (
         <div className="card-container">
+            <h1 className="title">{server}</h1>
             <h2 className="title">Cadastro de usuário</h2>
     
             <div className="label-container">

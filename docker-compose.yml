@@ -1,5 +1,6 @@
 version: '3.8'
 services:
+
   backend:
     container_name: backend
     build:
@@ -13,6 +14,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        SERVER_NAME: "Servidor 1"
     ports:
       - "8080:80"
     depends_on:
@@ -23,6 +26,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        SERVER_NAME: "Servidor 2"
     ports:
       - "8081:80"
     depends_on:
@@ -33,11 +38,13 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        SERVER_NAME: "Servidor 3"
     ports:
       - "8082:80"
     depends_on:
       - backend
-  
+
   nginx:
     image: nginx:latest
     container_name: loadbalancer
