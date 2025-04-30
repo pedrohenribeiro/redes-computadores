@@ -1,6 +1,8 @@
 version: '3.8'
+
 services:
 
+  # API de backend (sem alteração)
   backend:
     container_name: backend
     build:
@@ -9,43 +11,46 @@ services:
     ports:
       - "3332:3332"
 
-  frontend1:
-    container_name: frontend1
+  # Serviço de build: gera a imagem única do front-end
+  frontend-build:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      args:
-        SERVER_NAME: "Servidor 1"
+    image: my-frontend:latest
+    # Não expõe porta nem fica ativo em runtime
+    profiles:
+      - build
+
+  # As três réplicas do front-end, usando a mesma imagem
+  frontend1:
+    image: my-frontend:latest
+    environment:
+      - SERVER_NAME=Servidor 1
     ports:
       - "5001:80"
     depends_on:
       - backend
 
   frontend2:
-    container_name: frontend2
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      args:
-        SERVER_NAME: "Servidor 2"
+    image: my-frontend:latest
+    environment:
+      - SERVER_NAME=Servidor 2
     ports:
       - "5002:80"
     depends_on:
       - backend
 
   frontend3:
-    container_name: frontend3
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      args:
-        SERVER_NAME: "Servidor 3"
+    image: my-frontend:latest
+    environment:
+      - SERVER_NAME=Servidor 3
     ports:
       - "5003:80"
     depends_on:
       - backend
 
-  nginx:
+  # Load-balancer nginx
+  loadbalancer:
     image: nginx:latest
     container_name: loadbalancer
     depends_on:
@@ -56,3 +61,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+# Para rodar a build+deploy:
+# docker-compose --profile build up --build
+# docker-compose up -d
