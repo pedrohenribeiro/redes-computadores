@@ -32,12 +32,12 @@ function CreatePerson() {
         }
     };
 
-    const server = process.env.REACT_APP_SERVER_NAME;
+    const server = import.meta.env.VITE_SERVER_NAME;
     console.log("Mostrando: ", server)
 
     return (
         <div className="card-container">
-            <h2 className="title">{server}</h2>
+            <h2 className="title">{server || "— sem nome —"}</h2>
     
             <div className="label-container">
                 <input 
