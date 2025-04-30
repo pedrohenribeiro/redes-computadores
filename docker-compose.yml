@@ -9,39 +9,15 @@ services:
     ports:
       - "3332:3332"
 
-  frontend1:
-    container_name: frontend1
+   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      args:
-        SERVER_NAME: "Servidor 1"
-    ports:
-      - "5001:80"
-    depends_on:
-      - backend
-
-  frontend2:
-    container_name: frontend2
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      args:
-        SERVER_NAME: "Servidor 2"
-    ports:
-      - "5002:80"
-    depends_on:
-      - backend
-
-  frontend3:
-    container_name: frontend3
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      args:
-        SERVER_NAME: "Servidor 3"
-    ports:
-      - "5003:80"
+    image: meu-usuario/frontend-shared:latest
+    environment:
+      - VITE_SERVER_NAME=${SERVER_NAME}   # opcional, veremos abaixo
+    expose:
+      - "80"
     depends_on:
       - backend
 
@@ -49,9 +25,7 @@ services:
     image: nginx:latest
     container_name: loadbalancer
     depends_on:
-      - frontend1
-      - frontend2
-      - frontend3
+      - frontend
     ports:
       - "80:80"
     volumes:
