@@ -31,16 +31,14 @@ function CreatePerson() {
             setError("Error when registering person. Please, try again.");
         }
     };
-    //const server = window.SERVER_NAME || '— sem nome —';
 
-
-    const server = import.meta.env.VITE_SERVER_NAME;
-    console.log("Mostrando: ", server)
+    const server = window.SERVER_NAME || "— sem nome —";
+    console.log("Mostrando (runtime):", server);
 
 
     return (
         <div className="card-container">
-            <h2 className="title">{server || "â€” sem nome â€”"}</h2>
+            <h2 className="title">{server}</h2>
     
             <div className="label-container">
                 <input 
