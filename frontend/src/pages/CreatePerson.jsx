@@ -31,6 +31,8 @@ function CreatePerson() {
             setError("Error when registering person. Please, try again.");
         }
     };
+    //const server = window.SERVER_NAME || '— sem nome —';
+
 
     const server = import.meta.env.VITE_SERVER_NAME;
     console.log("Mostrando: ", server)
@@ -38,7 +40,7 @@ function CreatePerson() {
 
     return (
         <div className="card-container">
-            <h2 className="title">{server || "— sem nome —"}</h2>
+            <h2 className="title">{server || "â€” sem nome â€”"}</h2>
     
             <div className="label-container">
                 <input 
