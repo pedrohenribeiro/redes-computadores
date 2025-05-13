@@ -141,3 +141,12 @@ scp -i chave.pem ubuntu@<IP-da-instancia>:/home/ubuntu/client.ovpn .
 - Execute o OpenVPN como Administrador
 
 - Conecte usando a interface gráfica do OpenVPN
+
+## Comandos importantes 
+```bash
+sudo systemctl daemon-reload
+sudo systemctl start openvpn-server@servidor
+sudo systemctl stop openvpn-server@servidor
+sudo systemctl status openvpn-server@servidor
+sudo systemctl enable openvpn-server@servidor 
+```
